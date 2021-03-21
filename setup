@@ -4,6 +4,15 @@
 # install necessary tools
 sudo apt-get install -y autoconf automake libtool
 
+# loop thru submodules
+for x in suba subb subc
+do
+	cd $x
+	autoreconf --verbose --inistall --force
+	./configure
+	make
+done
+
 autoreconf --verbose --install --force
 ./configure
 make
