@@ -1,12 +1,15 @@
+#include <stdlib.h>
 #include <stdio.h>
 
 int main(int argc, char ** argv) {
-  printf("hello from suba\n");
-  system("suba");
-  printf("hello from subb\n");
-  system("subb");
-  printf("hello from subc\n");
-  system("subc");
+  int rc;
+
+  printf("calling suba\n");
+  rc = system("suba");
+  printf("calling subb\n");
+  rc = system("subb");
+  printf("calling subc\n");
+  rc = system("subc");
   return 0;
 }
 
