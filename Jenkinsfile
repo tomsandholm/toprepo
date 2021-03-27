@@ -8,13 +8,19 @@ pipeline {
     stage('build in parallel') {
       parallel {
         stage('build suba') {
-          build(job: "suba")
+          steps {
+            build(job: "suba")
+          }
         }
         stage('build subb') {
-          build(job: "subb")
+          steps {
+            build(job: "subb")
+          }
         }
         stage('build subc') {
-          build(job: "subc")
+          steps {
+            build(job: "subc")
+          }
         }
       }
     }
