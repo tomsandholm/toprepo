@@ -31,6 +31,14 @@ pipeline {
               projectName: 'suba',
               filter: "sub*.tar.gz",
               target: 'Collected']);
+          step ([$class: 'CopyArtifact', 
+              projectName: 'subb',
+              filter: "sub*.tar.gz",
+              target: 'Collected']);
+          step ([$class: 'CopyArtifact', 
+              projectName: 'subc',
+              filter: "sub*.tar.gz",
+              target: 'Collected']);
         }
       }
     }
