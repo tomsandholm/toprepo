@@ -24,9 +24,20 @@ pipeline {
         }
       }
     }
+    stage('copy artifacts') {
+      steps {
+        script {
+          step ([$class: 'CopyArtifact', 
+              projectName: 'suba',
+              filter: "sub*.tar.gz",
+              target: 'Infra']);
+        }
+      }
+    }
   }
   post {
     always {
+      
       archiveArtifacts artifacts: 'sub*.tar.gz', onlyIfSuccessful: true
       step([$class: 'WsCleanup'])
     }
