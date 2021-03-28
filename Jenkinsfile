@@ -29,15 +29,15 @@ pipeline {
         script {
           step ([$class: 'CopyArtifact', 
               projectName: 'suba',
-              filter: "sub*.tar.gz",
+              filter: "sub*.deb",
               target: 'Collected']);
           step ([$class: 'CopyArtifact', 
               projectName: 'subb',
-              filter: "sub*.tar.gz",
+              filter: "sub*.deb",
               target: 'Collected']);
           step ([$class: 'CopyArtifact', 
               projectName: 'subc',
-              filter: "sub*.tar.gz",
+              filter: "sub*.deb",
               target: 'Collected']);
         }
       }
@@ -46,7 +46,7 @@ pipeline {
   post {
     always {
       
-      archiveArtifacts artifacts: 'Collected/sub*.tar.gz', onlyIfSuccessful: true
+      archiveArtifacts artifacts: 'Collected/sub*.deb', onlyIfSuccessful: true
       step([$class: 'WsCleanup'])
     }
   }
