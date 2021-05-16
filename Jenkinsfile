@@ -28,7 +28,7 @@ pipeline {
       parallel {
         stage('build suba') {
           steps {
-            build job: 'suba',parameters: [[$class: 'StringParameterValue', name: 'tagovr', value: "${params.tagovrsuba}"]]
+            build job: 'suba',parameters: [[$class: 'StringParameterValue', name: 'tagovr', value: "$tagovrsuba"]]
           }
         }
         stage('build subb') {
