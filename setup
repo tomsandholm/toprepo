@@ -11,6 +11,7 @@ do
 	autoreconf --verbose --install --force
 	./configure
 	make
+	cd ..
 done
 
 autoreconf --verbose --install --force
