@@ -1,0 +1,14 @@
+#! /bin/bash
+# vi:set nu ai ap aw smd showmatch tabstop=4 shiftwidth=4:
+
+top=$(pwd)
+for x in $(git submodule status --recursive | awk '/^+/ {print $2}')
+do
+	echo $x
+	cd $x
+	cd ..
+	git add $(basename $x)
+	git commit -m 'update'
+	git push
+	cd $top
+done
