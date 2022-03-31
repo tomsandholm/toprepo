@@ -1,9 +1,3 @@
 [submodule "suba"]
 	path = suba
-	url = https://github.com/tomsandholm/suba
-[submodule "subb"]
-	path = subb
-	url = https://github.com/tomsandholm/subb
-[submodule "subc"]
-	path = subc
-	url = https://github.com/tomsandholm/subc
+	url = git@github.com:tomsandholm/suba.git
