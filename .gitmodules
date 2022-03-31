@@ -4,3 +4,6 @@
 [submodule "subb"]
 	path = subb
 	url = git@github.com:tomsandholm/subb.git
+[submodule "subc"]
+	path = subc
+	url = git@github.com:tomsandholm/subc.git
