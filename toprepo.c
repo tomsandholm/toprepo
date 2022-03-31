@@ -4,7 +4,7 @@
 int main(int argc, char ** argv) {
   int rc;
 
-  printf("calling suba\n");
+  printf("calling again suba\n");
   rc = system("suba");
   printf("calling subb\n");
   rc = system("subb");
