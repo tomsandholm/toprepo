@@ -1,3 +1,6 @@
 [submodule "suba"]
 	path = suba
 	url = git@github.com:tomsandholm/suba.git
+[submodule "subb"]
+	path = subb
+	url = git@github.com:tomsandholm/subb.git
