@@ -1,0 +1,52 @@
+#! /bin/bash
+# vi:set nu ai ap aw smd showmatch tabstop=4 shiftwidth=4:
+# ptrup
+# tool to update submodule pointers
+#
+# Tom Sandholm
+# Mon 11 Apr 2022 01:08:35 PM EDT
+# tsandholm@infinera.com
+#
+# This tool leverages the 'git submodule status --recursive'
+# utility to update submodule pointer on modified submodules.
+# This tool has only been tested using bash shell.
+# It relies on shell built-in functions pushd and popd.
+#
+# It will recurse thru each updated line/submodule found in the 
+# submodule status listing, then build a directory pushd stack 
+# to the end of the submodule directory list, then backstep 
+# (recursion)thru the submodule directories, adding/committing/pushing 
+# the previous directory hash.
+# 
+# Everything else is PFM ... ;-)
+#
+# extract only lines that begine with a '+', and only the path
+for x in $(git submodule status --recursive | awk '/^+/ {print $2}')
+do
+	# for lines that have multiple directory paths, replace '/' separator
+	# with a space, then cast all this into a shell array.
+	dirlist=($(echo $x | tr '/' ' '))
+
+	# now loop thru each entry (directory) found in the array
+	# and use this to build a directory stack, push to the new directory.
+	# this is how we throttle the recursion...
+	for dir in ${dirlist[*]}
+	do
+		# save the directory on the stack and change to it
+		pushd $dir
+	done
+
+	# now loop thru all entries found in the directory stack
+	# we pop the top one off to start.
+	# and this is the recursion...
+	while popd
+	do
+		# add the name of the last directory we were in
+		git add $(basename $OLDPWD)
+		# do the commit
+		git commit -m "update pointer for $(basename $OLDPWD)"
+		# and push it
+		git push
+		# and repeat ...
+	done
+done
